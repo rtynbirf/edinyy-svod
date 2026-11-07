@@ -534,7 +534,7 @@ def main():
     print("=== СБОРКА ЕДИНОГО СВОДА ===")
     print("артефакт: %s (%d Б)" % (ARTIFACT, len(raw)))
     print("шрифты: 5 лиц, %d Б" % total_font_bytes)
-    print("слов в прозе (сhek): %d" % words)
+    print("слов в прозе (проверка): %d" % words)
     print("sha256 html: %s" % sha)
     print("sha256 zip : %s" % zip_sha)
     for name, okv, detail in checks:
