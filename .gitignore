@@ -1,0 +1,12 @@
+# секреты — вне слежки (доктрина 03)
+.env
+scripts/.tok*
+*.tok
+
+# временные файлы сборщика
+build/_charset.txt
+build/_sub.woff2
+
+# python
+__pycache__/
+*.pyc
