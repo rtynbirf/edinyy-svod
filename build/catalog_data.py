@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Каталог 39 репозиториев аккаунта rtynbirf.
+"""Каталог 41 репозитория аккаунта rtynbirf.
 
-Источник: GitHub API GET /user/repos (снимок 2026-11-07) + карта аккаунта
+Источник: GitHub API GET /user/repos (снимок 2026-11-08, волна W-AUD-06) + карта аккаунта
 rtynbirf/repo-doctrine/06-карта-аккаунта.md (снимок 2026-11-01 и приложения
 до 2026-11-07). Каждая строка сверена с живым API-ответом; флаги archived/fork
 проверены отдельно; судьба пяти форков из карты TH-GH-10 проверена
@@ -73,7 +73,7 @@ CATALOG = [
      "каталог 665 AI-инструментов по контракту ГОЛОГРАММА v1"),
     (".github", "публ", "—", "2026-11-06", "A",
      "дефолтные community-файлы аккаунта: формы, шаблоны, кодексы"),
-    ("agryp", "прив", "C", "2026-11-06", "C",
+    ("agryp", "публ", "C", "2026-11-06", "C",
      "PID1-подобный супервизор AI-агентов: один файл C, файл-как-API"),
     ("runtime-protocol", "публ", "Python", "2026-11-06", "C",
      "клетка роя: уравнение ρ̇, GENESIS_EXEC, VOLATILE_META, CANCER_FILTER"),
@@ -93,6 +93,11 @@ CATALOG = [
      "единый свод архива: автономная HTML-экспозиция каталога (сам этот артефакт)"),
     ("polimat-hub", "прив", "Python", "2026-11-07", "A",
      "место сверок мультиагента ПОЛИМАТ: архитектура, журнал операций, stdlib-инструменты, vault/"),
+    ("polymath-gen", "публ", "Python", "2026-11-07", "C",
+     "медиа-агент роя: задание человека → промпт → изображение/видео → самокритика; CI, dependabot, паспорт со счётчиком LLM-прогонов"),
+    ("rtynbirf", "публ", "Python", "2026-11-07", "E",
+     "живой профиль аккаунта: числа не пишутся руками, генерируются скриптом (П-02)"),
+
 ]
 
 CLUSTERS = [
@@ -105,13 +110,15 @@ CLUSTERS = [
     ("C", "Полимат-инженерия",
      "агенты, рой, супервизоры, графы и организм из открытых проектов",
      ["polymath-os", "cell-swarm", "runtime-protocol", "universal-agent",
-      "agryp", "task-graph-propagator", "commons", "polymath-atlas-v107"]),
+      "agryp", "task-graph-propagator", "commons", "polymath-atlas-v107",
+      "polymath-gen"]),
     ("D", "Инструменты-приборы",
      "каталоги и экспортёры, где доказательство = воспроизводимая выдача",
      ["polymath-tools-atlas", "uace-pml"]),
     ("E", "Экспозиции",
      "автономные HTML-эссе: один файл, ноль внешних запросов",
-     ["web-evolution-1991-2026", "language-through-the-ages", "rtynbirf.github.io"]),
+     ["web-evolution-1991-2026", "language-through-the-ages", "rtynbirf.github.io",
+      "rtynbirf"]),
     ("F", "Медиа-вселенная РУВСОН",
      "караоке, голос, тексты, стриминг и реестр платформ — суверенно, без корпораций",
      ["singulyar", "singulyar-llm", "rumu", "ruvson-lyrics", "ruvson-rse2",
@@ -125,16 +132,16 @@ CLUSTERS = [
      ["windows-chronicle", "windows-full-report", "windows-encyclopedia"]),
 ]
 
-# Факты-константы свода (каждая сверена API/документами 2026-11-07)
+# Факты-константы свода (сверены API 2026-11-08, волна W-AUD-06)
 FACTS = {
-    "total": 39,
-    "private": 16,
-    "public": 23,
+    "total": 41,
+    "private": 15,
+    "public": 26,
     "first_repo": "cell65-host",
     "first_date": "2026-09-30",
-    "last_date": "2026-11-07",
-    "archived": ["H-PE11"],
-    "map_ghost_forks": ["langchain", "markitdown", "n8n-docs", "ui", "winget-pkgs"],
+    "last_date": "2026-11-08",
+    "archived": [],
+    "map_ghost_forks": ["langchain", "n8n-docs", "ui", "winget-pkgs"],
     "stars": {"voice-atlas-llm": 1, "universal-agent": 1},
 }
 
