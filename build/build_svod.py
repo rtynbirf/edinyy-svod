@@ -67,7 +67,7 @@ def render_catalog():
             "<td class=\"c-date\">%s</td><td class=\"c-role\">%s</td></tr>"
             % (cl, name, st % (cls, label), lang, date, esc(role)))
     return ('<div class="table-scroll"><table class="cat-table" aria-label='
-            '"Каталог 37 репозиториев">'
+            '"Каталог 41 репозиторий">'
             "<thead><tr><th>К</th><th>Репозиторий</th><th>Статус</th>"
             "<th>Язык</th><th>Создан</th><th>Род в своде</th></tr></thead>"
             "<tbody>%s</tbody></table></div>" % "".join(rows))
