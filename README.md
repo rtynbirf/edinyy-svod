@@ -72,3 +72,5 @@ python3 build/build_svod.py     # сборка + 6 проверок + zip + пл
   `rtynbirf/language-through-the-ages` (7 эпох языка, линг-код).
 - Правила аккаунта: `rtynbirf/repo-doctrine`. Ворклог операций:
   `rtynbirf/H-PE11-PHOENIX/worklog.md` (запись TH-SV-01).
+
+> Сверка живого инвентаря: `polimat-hub` (audit/inventory-*.json). Каталог ниже — снимок на момент сводной сверки; пересбор — задача Единого Сердца.
