@@ -8,11 +8,12 @@
 
 <!--ФОРЖ:МУЗА:НАЧАЛО-->
 <div align="center">
-  <img src="repo-muse.svg" width="100%" alt="Муза edinyy-svod: картина кузни ПОЛИМАТ, раунд 8" />
+  <img src="repo-muse.svg" width="100%" alt="Муза edinyy-svod: мастерская КУПОЛ БРУНЕЛЛЕСКИ, кузня ПОЛИМАТ, раунд 11" />
   <br/>
-  <img src="forge-divider.svg" width="62%" alt="разделитель кузни ПОЛИМАТ" />
+  <img src="forge-divider.svg" width="62%" alt="делитель мастерской КУПОЛ БРУНЕЛЛЕСКИ" />
 </div>
 <!--ФОРЖ:МУЗА:КОНЕЦ-->
+
 
 <!--ФОРЖ:ПОДВАЛ-->
 ---
