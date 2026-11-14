@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-SINGULYAR HOST v3.1 — run_all.py
-Прогон всех экспериментов H-007..H-027 с таблицей вердиктов.
+SINGULYAR HOST v3.2 — run_all.py
+Прогон всех экспериментов H-007..H-060 с таблицей вердиктов.
 Запуск:  python -m singulyar_host.run_all
 """
 from __future__ import annotations
@@ -35,12 +35,19 @@ from .experiments import (  # noqa: F401
     h025_self_modification,
     h026_recovery,
     h027_responsibility,
+    h030_h032_revocation,
+    h033_h035_core_attacks,
+    h036_h040_statuses,
+    h041_h045_attestation,
+    h046_h050_minimality,
+    h051_h055_history,
+    h056_h060_reserve,
 )
 
 
 def main(export_path: str = "") -> int:
     print("=" * 100)
-    print("SINGULYAR HOST v3.1 — рабочий прототип Хозяина. Срез: 15 ноября 2026.")
+    print("SINGULYAR HOST v3.2 — рабочий прототип Хозяина. Срез: 15 ноября 2026.")
     print("Ядро: SUBJECT + TRANSITION + GOVERNANCE SURFACE(7) + SPACE-as-function")
     print("HOST = AUTHORSHIP OF GOVERNED TRANSITIONS")
     print("=" * 100)
