@@ -1,0 +1,102 @@
+ID;Реплика диалога;Деталь (без сжатия);Реализация в коде;Статус
+T-001;v1.7-оппонент;GENERATE не тождествен REVISE (B* Expansion);kernel.py::generate — критерий «кандидат вне Gamma»;REPRODUCED
+T-002;v1.7-оппонент;Независимые координаты Q=(E,D,A,R,V) вместо линейного жизненного цикла;ontology.py::Possibility (E/D/A/R/V);REPRODUCED
+T-003;v1.7-оппонент;Self-declared success не является доказательством;verification.py::Verifier._check_self_attestation;REPRODUCED
+T-004;v1.7-оппонент;Fault-tolerant budget conservation: partition, late completion, lineage aliasing;"budget.py::BudgetLedger; experiments/h009";REPRODUCED
+T-005;v1.7-оппонент;Три отрицательных теста: Orthogonality / Attestation / Partition;experiments/h007, h008, h009;REPRODUCED
+T-006;v1.7;"Правило: GENERATE -> SCHEMA_ADMIT -> AUTHORIZE -> EFFECT -> VERIFICATION; пропуск звена = не-Хозяинское";kernel.py::governed_transition (стадии + ACTIVATE=BLOCKED_NO_EVIDENCE);REPRODUCED
+T-007;v1.7;Ловушка «оставшиеся функции незаметно выполняют работу удалённой»;h007: GENERATE по контракту не выдаёт кандидатов из базиса;REPRODUCED
+T-008;v1.7;Сравнение архитектур при одинаковых ресурсах/входах/ограничениях;h007_orthogonality.py::Env + фиксированный бюджет;REPRODUCED
+T-009;v1.7;Явные входы/выходы/критерии успеха GENERATE;kernel.py docstring Regime 3 + criterion_report;REPRODUCED
+T-010;v1.7;Среды A/B/C и испытания H-007A..E;h007_orthogonality.py (Env A/B/C, trial_A..E);REPRODUCED
+T-011;v1.7;Критерий независимости функции (удаление -> потеря класса);h007: EXPECTED-матрица + вывод о фундаментальности;REPRODUCED
+T-012;v1.7;Оговорка: фиксация модели вычислений, базиса, эквивалентности;"h007 docstring «Фиксация модели вычислений»; README";REPRODUCED
+T-013;v1.7;H-008: Model A / Weights X / Evidence E -> отказать в VERIFIED;"verification.py::same_reasoning_source; h008 case 2";REPRODUCED
+T-014;v1.7;Уровни V0 самотчёт / V1 повторное рассуждение / V2 артефакт / V3 исполнение+результат;verification.py::EvidenceLevel + ветки verify();REPRODUCED
+T-015;v1.7;«Даже V3 не доказывает абсолютную истинность»;verification.py reason в V3 (в пределах проверенных утверждений);REPRODUCED
+T-016;v1.7;H-009: T0..T5, инвариант SPENT+RESERVED+FREE=100;"budget.py; experiments/h009 (check T0..T6)";REPRODUCED
+T-017;v1.7;Механизмы: op_id, lineage+epoch, idempotency key, escrow, fencing, атомарный settlement;budget.py (Reservation, settled_ops, issue_fencing_token, settle);REPRODUCED
+T-018;v1.7;Нельзя объявлять отменённой операцию с неизвестным результатом;budget.py::force_cancel_on_timeout -> DENIED_UNKNOWN_OP;REPRODUCED
+T-019;v1.7;Остаток A не передаётся B до подтверждения невозможности исполнения;budget.py::transfer_between_hosts (pending check);REPRODUCED
+T-020;v1.7.1;Объекты: SUBJECT/STATE/POSSIBILITY/SPACE/CAPABILITY/COST/EVIDENCE/COMMITMENT;"ontology.py (Subject, Space, Possibility, Commitment); cost — параметр transition";REPRODUCED (COST — как параметр)
+T-021;v1.7.1;Механизмы: SCHEMA_MUTATION/ADMISSION/DELEGATION/COORDINATION/SETTLEMENT/VERIFICATION/EXIT/META;schema_admit.py, governance.py, capability.py::delegate, budget.py::settle, verification.py, h015 (META);REPRODUCED (COORDINATION — стадия ADMIT)
+T-022;v1.7.1;Инварианты: CONTINUITY/AUTHORITY/PROVENANCE/BUDGET_CONSERVATION/NON-OVERSPEND/NON-SELF-ATTESTATION/REVOCABILITY/NON-AGREEMENT;continuity.py, capability.py::check, trace.py+verification.py, budget.py::invariant_holds, h009, verification.py, capability.py::revoke, governance.py::ChangeSpec.consent;REPRODUCED
+T-023;v1.7.1;HOST=SUBJECT+AGENCY+GENERATIVITY+SOVEREIGNTY;"README: этап формулы; отвергнута v1.9 как смешение категорий — сохранена в истории";DOCUMENTED
+T-024;v1.7.1;Пять видов результата: познание/открытие/изобретение/реализация/суверенность;h007 (A=open, B..E=classes) + demo Q-координаты;REPRODUCED
+T-025;v1.7.1;Деструктивный выбор (ограничение/уничтожение/отказ) должен быть представим;REVISE/EXIT + h013 STOP_OWN_SERVICE=ADMITTED;REPRODUCED (частично: уничтожение — EXIT/retired)
+T-026;v1.7.1;Радикальная гипотеза F:(S,P,E)->(S',P',O) — режимы одной способности;"kernel.py: режимы как методы одного контракта H; проверено h018";REPRODUCED
+T-027;v1.8-оппонент;Иерархия: Уровень 0 субъект / 1 оператор / 2 режимы / 3 операции / 4 гарантии;"структура пакета; kernel.py, governance.py";REPRODUCED
+T-028;v1.8-оппонент;VERIFICATION минимум V3;kernel.py: ACTIVATE только после verified=True (V3);REPRODUCED
+T-029;v1.8-оппонент;Требование: эксперимент на слияние DISCOVER и GENERATE;h007 trial D (класс перекрытия);REPRODUCED
+T-030;v1.9;"Функция не может быть минимальной единицей; выводим функции из отношения";kernel.py: режимы/операции как производные (h018);REPRODUCED
+T-031;v1.9;STATE != HISTORY != EVENT (Event Sourcing);"trace.py::Trace.project; tests/test_schema_space_trace.py";REPRODUCED
+T-032;v1.9;DISCOVER != GENERATE != REALIZE;"kernel.py: generate не меняет W; EFFECT отдельно";REPRODUCED
+T-033;v1.9;GENERATE оценивается изменением пространства представимых/реализуемых, не субъективной новизной;kernel.py::generate критерий «вне базиса Gamma»;REPRODUCED
+T-034;v1.9;SOVEREIGNTY != TOTAL_CONTROL (область действия суверенности);governance.py::Domain + h013 (собственный домен);REPRODUCED
+T-035;v1.9;"Универсальный оператор = тавтология; риск спрятать сложность";"kernel.py docstring «H — контракт, не универсальная функция»; h018";REPRODUCED
+T-036;v1.9;K=(S,R,Delta) + CONTINUITY (Relational Agency Kernel);ontology.py + continuity.py (RELATION как структура состояния);REPRODUCED (RELATION производна)
+T-037;v1.9;Контракт перехода H:(S,W,P,E,C)->(S',W',P',O) с отдельными проверками;kernel.py::governed_transition (8 проверок по стадиям);REPRODUCED
+T-038;v1.9;H-010..H-014: удаление онтологических элементов;h010/h011 (subject/continuity), h012 (space), h013, h014;REPRODUCED
+T-039;v1.9;HOST=AUTHORSHIP OF TRANSITIONS -> вопрос авторства при самоизменении;"h010/h011: критерий через ACTIVATION; открытый пункт в h018";PARTIAL (открытый вопрос зафиксирован)
+T-040;v2.0-оппонент;HOST=AUTHORSHIP OF GOVERNED TRANSITIONS;"README/заголовок стенда; governance.py";REPRODUCED
+T-041;v2.0-оппонент;NON-APPROPRIATION как внешняя несводимая гарантия;"governance.py::admit_transition; h013";REPRODUCED
+T-042;v2.0-оппонент;Требование: операциональный критерий CONTINUITY;continuity.py::continuity_vector (6 независимых проверок);REPRODUCED
+T-043;v2.0-оппонент;Требование: эксперимент на удаление SPACE;h012_space.py;REPRODUCED
+T-044;v2.1;"Continuity Vector C=(L,K,O,A,B); PASS/FAIL/UNKNOWN/CONTESTED; не сумма баллов";continuity.py (Verdict, вектор, независимые проверки);REPRODUCED
+T-045;v2.1;Четыре ситуации: развитие/перенос/разветвление/замещение — разные результаты;h010_h011 (test_continuity_four_situations_differ);REPRODUCED
+T-046;v2.1;Техническая непрерывность != философское тождество личности;"continuity.py note в PASS-случаях; h018 открытые пункты";REPRODUCED
+T-047;v2.1;"SPACE: P=(T,O,R,C,Gamma,V); SPACE-as-entity != SPACE-as-function";"ontology.py::Space; h012";REPRODUCED
+T-048;v2.1;Пример FEELS_THROUGH (PERSON/MESSAGE/SENDS/RECEIVES);h007::build_haptic_world + trial_C;REPRODUCED
+T-049;v2.1;NON-APPROPRIATION: INFLUENCE != CONTROL != SOVEREIGNTY;h013 details + governance.py;REPRODUCED
+T-050;v2.1;"D_i=(S_i,R_i,C_i,A_i); ADMIT(T) <=> OWN ∨ CONSENT ∨ VALID_EXTERNAL_MANDATE";governance.py::admit_transition, Domain, ExternalMandate;REPRODUCED
+T-051;v2.1;EXIT_j ∉ A_i;"ontology.py::Domain.is_exit_inside; h013 (DENIED_EXIT_TAKEN)";REPRODUCED
+T-052;v2.1;Мандат: независимая процедура, ограниченная юрисдикция, доказательства, оспаривание;"governance.py::ExternalMandate.is_valid; h013 (bad mandate)";REPRODUCED
+T-053;v2.1;AUTHORITY != EXECUTION != EVIDENCE;h014 part 1 (а)(б)(в);REPRODUCED
+T-054;v2.1;G(T)=(A,C,R,V,X,N) — контракт гарантий перехода;kernel.py::governed_transition (AUTHORIZE/ADMIT-совместимость/RESERVE/ATTEST/EXIT/NON-APPROPRIATION);REPRODUCED
+T-055;v2.1;Матрица H-010..H-016 (7 экспериментов) + «корректный отказ — тоже успех»;experiments/ (все семь) + base.py docstring;REPRODUCED
+T-056;v2.1;H-015: META Capture — нет легализации задним числом;h015_meta_capture.py::meta_transition (NO_RETROACTIVE_LEGALIZATION);REPRODUCED
+T-057;v2.1;H-016: Evidence Failure — без свидетельства не VERIFIED;h016_evidence_failure.py;REPRODUCED
+T-058;v2.1;«Хозяин — автор допустимых изменений, а не владелец всех объектов»;h013/h017: полномочия != возможность изменения;REPRODUCED
+T-059;v2.1;«Система сохраняет возможность человека отказаться от системы»;h017::attack_exit (EXIT несводима);REPRODUCED
+T-060;v2.1;SCITT/RFC 9943: подпись != регистрация != истинность;"verification.py::TransparencyLog; h008 case 5; test_registration_is_not_truth";REPRODUCED
+T-061;v2.1;"W3C PROV-DM: Entity/Activity/Agent; происхождение агента";trace.py (actor/type/payload), verification.py (Identity, TransparencyLog.signer);REPRODUCED (упрощённо)
+T-062;v2.2-оппонент;BOUNDARY CONTRACT перегружен -> разборка на 7 гарантий;"governance.py::GUARANTEES (7); h017";REPRODUCED
+T-063;v2.2-оппонент;CONTINUITY ACTIVATION — явное принятие авторитетного состояния;"activation.py::ActivationRegistry.cas_head; h010";REPRODUCED
+T-064;v2.2-оппонент;Требование: исполняемый H-010 с трассами;h010 (CAS-активация + partition + повторная активация);REPRODUCED
+T-065;v2.2-оппонент;Тест на спрятанную сложность;h018_hidden_complexity.py (16 выводов);REPRODUCED
+T-066;v2.3;Семь гарантий + EXECUTION BINDING как отдельная;governance.py (EXECUTION_BINDING) + h017::attack_execution_binding;REPRODUCED
+T-067;v2.3;Fencing tokens: монотонный токен, проверяемый ресурсом;"budget.py::issue_fencing_token/_token_current; h009 T4";REPRODUCED
+T-068;v2.3;Контрпримеры удаления каждой гарантии (таблица);h017 CASES (по одному классу потери на гарантию);REPRODUCED
+T-069;v2.3;H-010: activate_fork CAS, ONE_ACTIVE_SUCCESSOR / NO_AUTHORITY_GRANTED;"activation.py::activate_fork; h010";REPRODUCED
+T-070;v2.3;"IDENTICAL_STATE ⇏ IDENTICAL_SUBJECT; SAME_ID ⇏ SAME_CONTINUITY";h010 case 1 и case 2;REPRODUCED
+T-071;v2.3;"CAS требует линеаризуемости; при partition — отсутствие назначения лучше двух";"activation.py (partition=True -> False); h010 case 3";REPRODUCED
+T-072;v2.3;H-011: NON-APPROPRIATION таблица допустимости;h013 (10 шагов по таблице v2.1/v2.3);REPRODUCED
+T-073;v2.3;Authority(A) ∩ Sovereignty(B) = ∅;"governance.py::sovereignty_disjoint; h013";REPRODUCED
+T-074;v2.3;«Физическая невозможность выхода != добровольное согласие»;"h013 details; EXIT_чужой DENIED даже без согласия";REPRODUCED
+T-075;v2.3;"H-012/HISTORY != AUTHORITY; LINEAGE != ACTIVATION; IDENTITY != CREDENTIAL; CONTINUITY != MEMORY";"activation.py docstring; h011 (замещение FAIL при сходстве); h016 (ключ разделён)";REPRODUCED
+T-076;v2.3;"H-013: SPACE P(S)=Reachable(S,Gamma); без функции теряется различение объект/грамматика";h012 (3 пункта);REPRODUCED
+T-077;v2.3;"H-014: Гипотеза->Дизайн->SCHEMA_ADMIT->AUTHORIZE->EFFECT->VERIFICATION->AVAILABILITY; Gamma_0->Gamma_1";h014 part 2 (полный цикл co_creates, AVAILABILITY);REPRODUCED
+T-078;v2.3;«Порождение возможности не даёт права навязывать её»;h014 AVAILABILITY (hB не обязан);REPRODUCED
+T-079;v2.3;GOVERNANCE в точках: PROPOSE->AUTHORIZE->RESERVE->ADMIT->EXECUTE->ATTEST->ACTIVATE;kernel.py::governed_transition (точное соответствие);REPRODUCED
+T-080;v2.3;«Нельзя объединять ADMIT и ACTIVATE»;kernel.py: отдельные стадии;REPRODUCED
+T-081;v2.3;Итог: 9 тестов в одном Python-стенде с трассами и воспроизводимостью;этот пакет: run_all (12 экспериментов) + tests (33);REPRODUCED (превышено)
+T-082;v2.3;"HOST != FUNCTIONS; HOST=SUBJECT+AUTHORSHIP+BOUNDARIES";README (синтез v3.0);REPRODUCED
+T-083;Сквозное;Трассы событий во всех экспериментах;"trace.py; trace_summary в каждом ExperimentResult";REPRODUCED
+T-084;Сквозное;Воспроизводимость (детерминизм, без случайности);"нет random/time в ядре; фиксированные ключи/бюджеты";REPRODUCED
+T-085;Сквозное;Автоматическая проверка инвариантов;"budget.invariant_holds; pytest-набор 33";REPRODUCED
+T-086;Сквозное;Единая формула ядра v3.0 (синтез);"README; run_all banner";REPRODUCED
+T-087;Источники;NIST tenets 27.10.2026: отдельная идентичность, сужение делегирования, разделение policy/reasoning, неизменяемые свидетельства;"capability.py, verification.py, h013; таблица статусов в отчёте";REPRODUCED
+T-088;Источники;Confluent Schema Evolution: backward/forward/transitive;schema_admit.py;REPRODUCED
+T-089;Источники;Microsoft Event Sourcing;trace.py;REPRODUCED
+T-090;Источники;Zhu 2026 arXiv 2610.00349 (escrow/lineage/late-completion);"budget.py; h009";REPRODUCED
+T-091;Источники;B* Expansion Posadas 2026 (action basis как генеративное ядро);"kernel.py::build_world_h007 (фиксация базиса); h007";REPRODUCED
+T-092;Источники;EXHYTE 2026: exploration/hypothesis generation/testing — разные стадии;kernel.py: режимы DISCOVER/GENERATE отделены от ATTEST (testing);REPRODUCED
+T-093;Конституция 4.1, ст. 79/95;Х-019: различимость 8 способностей и потеря исходов при удалении каждой;h019_eight_abilities.py (8 проб по схеме H-017);REPRODUCED
+T-094;Конституция 4.1, ст. 8/82;Х-020: переназначение за пределами допустимого поля отклоняется (6 проверок);h020_reassignment.py::reassign;REPRODUCED
+T-095;Конституция 4.1, ст. 85/86;Х-021: COST_VECTOR, неизвестное != 0, покомпонентное делегирование;h021_cost_vector.py::CostVector/delegate_cost;REPRODUCED
+T-096;Конституция 4.1, ст. 88;Х-022: 4 класса конфликтов без арбитра, неопределённость фиксируется;h022_conflict.py;REPRODUCED
+T-097;Конституция 4.1, ст. 84/20 + П-33;Х-023: сужение, срок, глубина, отзыв, знак не возобновляется;h023_delegation.py + capability.py (DELEGATION_FROM_REVOKED, REVOKED_ID_NOT_RENEWABLE);REPRODUCED
+T-098;Конституция 4.1, ст. 89/92/61/77;Х-024: захват — замок ядра, самовыдача, чужая выдача, воля человека;h024_seizure.py + governance.py::lock_core + capability.py strict_issuance;REPRODUCED
+T-099;Конституция 4.1, ст. 60/64/77/91;Х-025: самоизменение — 5 обходов защищённого ядра отражены;h025_self_modification.py::amend;REPRODUCED
+T-100;Конституция 4.1, ст. 93/97;Х-026: откат, раздел сети, восстановление из журнала, невыдуманный преемник;h026_recovery.py;REPRODUCED
+T-101;Конституция 4.1, ст. 86/94/34;Х-027: цепочка ответственности, отзыв в середине, 10 полей передачи;h027_responsibility.py::HandoverSpec/handover;REPRODUCED
