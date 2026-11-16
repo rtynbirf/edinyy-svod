@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polymath PID1 Agent Prototype (LFS Kernel)</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-blue: #38bdf8;
+            --accent-green: #4ade80;
+            --accent-purple: #c084fc;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --border-color: #334155;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 24px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        .header h1 { margin: 0; font-size: 1.8rem; color: var(--accent-blue); }
+        .header span { font-family: monospace; background: #0284c722; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--accent-blue); color: var(--accent-blue); }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .card h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
+        .metric-row { display: flex; justify-content: space-between; margin: 12px 0; font-size: 1rem; }
+        .metric-val { font-weight: bold; font-family: monospace; }
+        .bar-container { background: #0f172a; border-radius: 6px; height: 12px; width: 100%; overflow: hidden; margin-top: 4px; }
+        .bar-fill { height: 100%; transition: width 0.4s ease; }
+        .btn {
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            color: white; border: none; padding: 12px 20px; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; margin-top: 12px; transition: transform 0.1s;
+        }
+        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        .btn:active { transform: translateY(0); }
+        .log-box {
+            background: #090d16; font-family: monospace; font-size: 0.85rem; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); height: 180px; overflow-y: auto; color: #a5f3fc; margin-top: 10px;
+        }
+        .bridge-tag { background: #164e63; color: #67e8f9; padding: 4px 8px; border-radius: 4px; display: inline-block; margin: 4px; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌌 Polymath PID1 Agent Prototype</h1>
+        <span>LFS Bare-Metal Kernel v1.0</span>
+    </div>
+
+    <div class="grid">
+        <!-- PID0 State Card -->
+        <div class="card">
+            <h2>⚙️ PID0: Среда & Скаляры</h2>
+            <div class="metric-row">
+                <span>Энтропия Среды (S):</span>
+                <span class="metric-val" id="entropy-val" style="color:#f87171;">0.950</span>
+            </div>
+            <div class="bar-container"><div id="entropy-bar" class="bar-fill" style="width: 95%; background: #f87171;"></div></div>
+
+            <div class="metric-row" style="margin-top: 16px;">
+                <span>Гармония Системы (H):</span>
+                <span class="metric-val" id="harmony-val" style="color:var(--accent-green);">0.050</span>
+            </div>
+            <div class="bar-container"><div id="harmony-bar" class="bar-fill" style="width: 5%; background: var(--accent-green);"></div></div>
+
+            <div class="metric-row" style="margin-top: 16px;">
+                <span>Активные Овраги:</span>
+                <span class="metric-val" id="ravines-count">3</span>
+            </div>
+        </div>
+
+        <!-- PID1 State Card -->
+        <div class="card">
+            <h2>👑 PID1: Субъект & Мастерство</h2>
+            <div class="metric-row">
+                <span>Мастерство LFS (M):</span>
+                <span class="metric-val" id="mastery-val" style="color:var(--accent-purple);">0.100</span>
+            </div>
+            <div class="bar-container"><div id="mastery-bar" class="bar-fill" style="width: 10%; background: var(--accent-purple);"></div></div>
+
+            <div class="metric-row" style="margin-top: 16px;">
+                <span>Вектор Интента PID1:</span>
+                <span class="metric-val" id="vector-val" style="color:var(--accent-blue);">[0.32, -0.15, 0.88]</span>
+            </div>
+
+            <button class="btn" onclick="stepSimulation()">⚡ Запустить Диалектический Мост (Синтез)</button>
+            <button class="btn" style="background:#475569; margin-top:8px;" onclick="resetSimulation()">🔄 Сбросить Симуляцию</button>
+        </div>
+
+        <!-- System Log Card -->
+        <div class="card" style="grid-column: 1 / -1;">
+            <h2>📜 Лог Синтеза и Построения Мостов</h2>
+            <div id="bridge-container"></div>
+            <div class="log-box" id="log-box">=== СИСТЕМА ИНИЦИАЛИЗИРОВАНА (PID0 -> PID1) ===
+[PID0] Энтропия высокая (0.950). Заданы овраги шума.
+[PID1] Субъект готов к строительству мостов без трения.
+</div>
+        </div>
+    </div>
+
+    <script>
+        let entropy = 0.950;
+        let harmony = 0.050;
+        let mastery = 0.100;
+        let step = 0;
+        const ravines = [
+            "Информационный шум (Трение)",
+            "Ресурсный конфликт (Экосистема)",
+            "Разрыв смыслов (Непонимание)"
+        ];
+
+        function updateUI() {
+            document.getElementById('entropy-val').innerText = entropy.toFixed(3);
+            document.getElementById('entropy-bar').style.width = (entropy * 100) + '%';
+            
+            document.getElementById('harmony-val').innerText = harmony.toFixed(3);
+            document.getElementById('harmony-bar').style.width = (harmony * 100) + '%';
+            
+            document.getElementById('mastery-val').innerText = mastery.toFixed(3);
+            document.getElementById('mastery-bar').style.width = (mastery * 100) + '%';
+
+            document.getElementById('ravines-count').innerText = Math.max(0, 3 - step);
+
+            const vec = [(0.2 + step * 0.25).toFixed(2), (0.1 - step * 0.05).toFixed(2), (0.8 + step * 0.06).toFixed(2)];
+            document.getElementById('vector-val').innerText = '[' + vec.join(', ') + ']';
+        }
+
+        function stepSimulation() {
+            if (step >= ravines.length) {
+                log("⚠️ Все овраги перекрыты! Мосты построены, энтропия минимизирована.");
+                return;
+            }
+            const currentRavine = ravines[step];
+            const bridgeQuality = (0.75 + Math.random() * 0.22).toFixed(3);
+            
+            entropy = Math.max(0.1, entropy - bridgeQuality * 0.24);
+            harmony = Math.min(1.0, harmony + bridgeQuality * 0.28);
+            mastery = Math.min(1.0, mastery + 0.28);
+
+            log(`[Шаг ${step+1}] PID1 обнаружил: '${currentRavine}'`);
+            log(`        -> Построен Мост Качества ${bridgeQuality}. Энтропия S=${entropy.toFixed(3)}, Гармония H=${harmony.toFixed(3)}`);
+
+            const tag = document.createElement('span');
+            tag.className = 'bridge-tag';
+            tag.innerText = `🌉 Мост #${step+1}: ${currentRavine} (${bridgeQuality})`;
+            document.getElementById('bridge-container').appendChild(tag);
+
+            step++;
+            updateUI();
+        }
+
+        function resetSimulation() {
+            entropy = 0.950;
+            harmony = 0.050;
+            mastery = 0.100;
+            step = 0;
+            document.getElementById('bridge-container').innerHTML = '';
+            document.getElementById('log-box').innerText = "=== СИСТЕМА СБРОШЕНА ===\n[PID0] Энтропия высокая (0.950).\n[PID1] Готов к работе.\n";
+            updateUI();
+        }
+
+        function log(msg) {
+            const box = document.getElementById('log-box');
+            box.innerText += msg + '\n';
+            box.scrollTop = box.scrollHeight;
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>

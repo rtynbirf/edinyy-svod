@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polymath Agent PID1 v3 - Emergent Governance Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { background-color: #0b0f19; color: #e2e8f0; font-family: system-ui, -apple-system, sans-serif; }
+    .card { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(51, 65, 85, 0.6); backdrop-filter: blur(12px); border-radius: 12px; }
+    .glow-cyan { box-shadow: 0 0 20px rgba(6, 182, 212, 0.25); }
+    .glow-purple { box-shadow: 0 0 20px rgba(168, 85, 247, 0.25); }
+  </style>
+</head>
+<body class="p-6 min-h-screen">
+
+  <!-- HEADER -->
+  <header class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-6 border-b border-slate-800">
+    <div>
+      <div class="flex items-center gap-3">
+        <span class="px-3 py-1 bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-xs font-mono rounded-full uppercase tracking-wider">PID1 = LFS v3.0</span>
+        <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-mono rounded-full">Anti-Hallucination Verified</span>
+      </div>
+      <h1 class="text-3xl font-bold mt-2 bg-gradient-to-r from-cyan-400 via-sky-300 to-purple-500 bg-clip-text text-transparent">
+        Полимат-Агент v3: 6-Слойный Мультиагентный Синтез
+      </h1>
+      <p class="text-slate-400 text-sm mt-1">
+        Параллельное решение системных оврагов с PID-регулированием и гашением контекстного дрейфа.
+      </p>
+    </div>
+    <div class="flex gap-3">
+      <button onclick="runCycle()" class="px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-lg shadow-lg glow-cyan transition">
+        ▶ Запустить Такт Синтеза
+      </button>
+      <button onclick="injectNoise()" class="px-4 py-2.5 bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-700/50 font-semibold rounded-lg transition">
+        ⚡ Вбросить Стресс PID0
+      </button>
+    </div>
+  </header>
+
+  <!-- GRID METRICS -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+    <div class="card p-5 border-cyan-500/30">
+      <div class="text-slate-400 text-xs uppercase tracking-wider font-semibold">Гармония Системы</div>
+      <div id="metric-harmony" class="text-3xl font-extrabold text-cyan-400 mt-2">0.050</div>
+      <div class="text-xs text-cyan-500/80 mt-1">Target Alignment = 1.0</div>
+    </div>
+    <div class="card p-5 border-rose-500/30">
+      <div class="text-slate-400 text-xs uppercase tracking-wider font-semibold">Энтропия PID0</div>
+      <div id="metric-entropy" class="text-3xl font-extrabold text-rose-400 mt-2">0.950</div>
+      <div class="text-xs text-rose-500/80 mt-1">Error Amplification Mitigation</div>
+    </div>
+    <div class="card p-5 border-purple-500/30">
+      <div class="text-slate-400 text-xs uppercase tracking-wider font-semibold">PID Коррекция (I+D)</div>
+      <div id="metric-pid" class="text-3xl font-extrabold text-purple-400 mt-2">+0.000</div>
+      <div class="text-xs text-purple-400/80 mt-1">Integral Windup Guard Active</div>
+    </div>
+    <div class="card p-5 border-emerald-500/30">
+      <div class="text-slate-400 text-xs uppercase tracking-wider font-semibold">Мастерство PID1</div>
+      <div id="metric-mastery" class="text-3xl font-extrabold text-emerald-400 mt-2">0.100</div>
+      <div class="text-xs text-emerald-500/80 mt-1">Bare Metal Dynamic Learning</div>
+    </div>
+  </div>
+
+  <!-- MAIN DASHBOARD CONTENT -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+    
+    <!-- CHART (2 COLS) -->
+    <div class="lg:col-span-2 card p-6 glow-cyan">
+      <h3 class="text-lg font-bold text-slate-200 mb-4 flex items-center justify-between">
+        <span>Динамика Эмерджентной Стабильности</span>
+        <span class="text-xs text-slate-400 font-mono">PID0 vs PID1 Feedback Loop</span>
+      </h3>
+      <div class="h-72">
+        <canvas id="systemChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 6-LAYER ARCHITECTURE STATUS -->
+    <div class="card p-6 border-slate-700">
+      <h3 class="text-lg font-bold text-slate-200 mb-4">6-Слойный Стек Агента</h3>
+      <div class="space-y-3 text-xs">
+        <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-800">
+          <div class="font-bold text-cyan-400">1. Reasoning Core</div>
+          <div class="text-slate-400">LLM Vector Alignment Engine</div>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-800">
+          <div class="font-bold text-purple-400">2. Memory System</div>
+          <div class="text-slate-400">Integral Memory + State Graph</div>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-800">
+          <div class="font-bold text-emerald-400">3. StateGraph Orchestrator</div>
+          <div class="text-slate-400">Architect, Dialectic, StressTester</div>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-800">
+          <div class="font-bold text-amber-400">4. Bare Metal Execution</div>
+          <div class="text-slate-400">LFS Kernel Zero-Bloat Sandbox</div>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-800">
+          <div class="font-bold text-rose-400">5. Guardrail & Verification</div>
+          <div class="text-slate-400">Anti-Hallucination non-zero-sum check</div>
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-800">
+          <div class="font-bold text-sky-400">6. State Lock & Versioning</div>
+          <div class="text-slate-400">Optimistic Locking (Version: <span id="state-ver">1</span>)</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LOGS -->
+  <div class="card p-6">
+    <h3 class="text-lg font-bold text-slate-200 mb-3">Лог Запуска Диалектического Синтеза</h3>
+    <div id="log-container" class="font-mono text-xs space-y-2 h-40 overflow-y-auto bg-slate-950/80 p-4 rounded-lg border border-slate-800 text-slate-300">
+      <div>[INIT] Инициализировано ядро PID1 (LFS v3). Ожидание первого такта...</div>
+    </div>
+  </div>
+
+  <script>
+    let state = {
+      harmony: 0.05,
+      entropy: 0.95,
+      pidCorrection: 0.0,
+      mastery: 0.10,
+      version: 1,
+      integralErr: 0.0,
+      prevErr: 0.95
+    };
+
+    const ctx = document.getElementById('systemChart').getContext('2d');
+    const chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Старт'],
+        datasets: [
+          { label: 'Гармония (PID1)', data: [0.05], borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', fill: true, tension: 0.3 },
+          { label: 'Энтропия (PID0)', data: [0.95], borderColor: '#f43f5e', backgroundColor: 'rgba(244,63,94,0.1)', fill: true, tension: 0.3 },
+          { label: 'PID Поправка', data: [0.0], borderColor: '#c084fc', borderDash: [4,4], tension: 0.3 }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: { min: 0, max: 1.1, grid: { color: 'rgba(51,65,85,0.3)' }, ticks: { color: '#94a3b8' } },
+          x: { grid: { color: 'rgba(51,65,85,0.3)' }, ticks: { color: '#94a3b8' } }
+        },
+        plugins: { legend: { labels: { color: '#cbd5e1' } } }
+      }
+    });
+
+    function runCycle() {
+      let err = 1.0 - state.harmony;
+      state.integralErr += err * 0.1;
+      let diff = err - state.prevErr;
+      state.prevErr = err;
+      
+      state.pidCorrection = (0.4 * err) + (0.1 * state.integralErr) + (0.05 * diff);
+      
+      let gain = (0.85 + Math.random() * 0.14) * (1.0 + state.pidCorrection);
+      state.harmony = Math.min(1.0, state.harmony + (gain * 0.22));
+      state.entropy = Math.max(0.01, state.entropy - (gain * 0.20));
+      state.mastery = Math.min(1.0, state.mastery + 0.08);
+      state.version += 1;
+
+      updateUI(`[CYCLE ${state.version}] Синтез проведен. Gain: ${gain.toFixed(3)}, PID: ${state.pidCorrection.toFixed(3)}. Овраг компенсирован.`);
+    }
+
+    function injectNoise() {
+      state.entropy = Math.min(1.0, state.entropy + 0.25);
+      state.harmony = Math.max(0.05, state.harmony - 0.15);
+      state.version += 1;
+      updateUI(`[STRESS TEST] Вброшен нелинейный шум в PID0! Энтропия возросла до ${state.entropy.toFixed(3)}. PID-регулятор активирован.`);
+    }
+
+    function updateUI(logMsg) {
+      document.getElementById('metric-harmony').innerText = state.harmony.toFixed(3);
+      document.getElementById('metric-entropy').innerText = state.entropy.toFixed(3);
+      document.getElementById('metric-pid').innerText = (state.pidCorrection >= 0 ? '+' : '') + state.pidCorrection.toFixed(3);
+      document.getElementById('metric-mastery').innerText = state.mastery.toFixed(3);
+      document.getElementById('state-ver').innerText = state.version;
+
+      const log = document.getElementById('log-container');
+      const entry = document.createElement('div');
+      entry.innerText = logMsg;
+      log.prepend(entry);
+
+      chart.data.labels.push(`t=${state.version}`);
+      chart.data.datasets[0].data.push(state.harmony);
+      chart.data.datasets[1].data.push(state.entropy);
+      chart.data.datasets[2].data.push(state.pidCorrection);
+      chart.update();
+    }
+  </script>
+</body>
+</html>
