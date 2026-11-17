@@ -2,7 +2,7 @@
  "hologram": 1,
  "root": "c223bd4a2f6a56783c1fbdb1b1f671fa61c3150ecf320c82796ea5763043a696",
  "n": 73,
- "storage": 68,
+ "storage": 36,
  "r": 3,
  "self": {
   "name": "edinyy-svod",
@@ -312,10 +312,40 @@
    "cluster": ""
   },
   {
+   "name": "karaoke-dream",
+   "desc": "Браузерное караоке мечты: неон, гид-вокал, оценка голоса в реальном времени и Зелёный коридор — тональность подстраивается под певца. Vanilla JS + WebAudio, zero-dependency.",
+   "lang": "JavaScript",
+   "cluster": "SINGULAR"
+  },
+  {
+   "name": "khozyain",
+   "desc": "ХОЗЯИН ДОМА — аккаунт-уровневый автомат состояния: зелёные main, живые триггеры, ноль открытых состояний и ноль уведомлений. Слой 3 дома поверх repo-doctrine и domovoy-ritual",
+   "lang": "Python",
+   "cluster": ""
+  },
+  {
+   "name": "polymat-hive",
+   "desc": "🐝 Живой репозиторий-организм: экипаж автономных AI-агентов в GitHub Actions — Copilot, локальный GGUF-нейромозг или инстинкты. Открой issue — экипаж ответит.",
+   "lang": "Python",
+   "cluster": "SWARM"
+  },
+  {
+   "name": "polymath-core",
+   "desc": "КНИГА ПОЛИМАТ-ЯДРА",
+   "lang": "Python",
+   "cluster": ""
+  },
+  {
    "name": "singulyar",
    "desc": "СИНГУЛЯР — офлайн-вселенная караоке RUVSON: 64 песни · 197 языков (цель 200) · ОРКЕСТРАТОР ·15 · хаб + 52 двери · PWA (офлайн, без слежки)",
    "lang": "HTML",
    "cluster": "SINGULAR"
+  },
+  {
+   "name": "yazyk-skvoz-epohi",
+   "desc": "Язык сквозь эпохи · Дом-Автомат v21 — семиэпохальное эссе, построенное как детерминированный конечный автомат (DFA). Seven epochs × seven cyrillic fonts × three story layers, shipped as a finite autom",
+   "lang": "HTML",
+   "cluster": ""
   }
  ]
 }
