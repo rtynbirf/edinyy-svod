@@ -1,12 +1,12 @@
 <div align="center">
-  <img src="banner.png" width="100%" alt="Штандарт edinyy-svod" />
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/edinyy-svod@main/banner.png" width="100%" alt="Штандарт edinyy-svod" />
 </div>
 
 <!--ФОРЖ:МУЗА:НАЧАЛО-->
 <div align="center">
-  <img src="repo-muse.svg" width="100%" alt="Муза edinyy-svod: мастерская КУПОЛ БРУНЕЛЛЕСКИ, кузня ПОЛИМАТ, раунд 12 · REVE=РЕВО" />
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/edinyy-svod@main/repo-muse.svg" width="100%" alt="Муза edinyy-svod: мастерская КУПОЛ БРУНЕЛЛЕСКИ, кузня ПОЛИМАТ, раунд 12 · REVE=РЕВО" />
   <br/>
-  <img src="forge-divider.svg" width="62%" alt="делитель мастерской КУПОЛ БРУНЕЛЛЕСКИ" />
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/edinyy-svod@main/forge-divider.svg" width="62%" alt="делитель мастерской КУПОЛ БРУНЕЛЛЕСКИ" />
 </div>
 <!--ФОРЖ:МУЗА:КОНЕЦ-->
 
