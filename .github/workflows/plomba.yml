@@ -1,0 +1,71 @@
+name: пломба-дома (волна-24)
+
+# Сторож канона (волна-24, вынос фронта 2 «пломба как код»):
+#   1) SHA-манифесты пачек — тампер-эвиденс (П-1 шкалы пломб дома);
+#   2) журнал Конституции — только вперёд: удалений строк не быть (п. 115);
+#   3) барьер секретов на диффе хода (аксиома 4 АГЕНТС).
+# Дом пушит одним коммитом на волну; сторож смотрит диапазон хода (before→after).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  plomba:
+    name: сторож канона
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 1. SHA-манифесты пачек (sha256sum -c)
+        run: |
+          set -euo pipefail
+          found=0
+          while IFS= read -r m; do
+            echo "== $m"
+            dir=$(dirname "$m")
+            (cd "$dir" && sha256sum -c "$(basename "$m")")
+            found=$((found+1))
+          done < <(git -c core.quotepath=false ls-files | grep -E '(^|/)SHA256SUMS[^/]*\.txt$')
+          echo "проверено манифестов: $found"
+          if [ "$found" -eq 0 ]; then
+            echo "::warning::манифестов не найдено"
+          fi
+
+      - name: 2. Журнал дома — только вперёд (удалений не быть)
+        run: |
+          set -euo pipefail
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.event.after }}"
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            BEFORE="HEAD^"
+            AFTER="HEAD"
+          fi
+          del=$(git diff --numstat "$BEFORE" "$AFTER" -- 'КОНСТИТУЦИЯ_ХОЗЯИНА_4.2.md' | awk '{s+=$2} END {print s+0}')
+          echo "удалено строк журнала: ${del}"
+          if [ "$del" -ne 0 ]; then
+            echo "::error::журнал дома понёс удаления — исправление только новой записью (п. 115)"
+            exit 1
+          fi
+
+      - name: 3. Секреты не попадают в git (аксиома 4)
+        run: |
+          set -euo pipefail
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.event.after }}"
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            BEFORE="HEAD^"
+            AFTER="HEAD"
+          fi
+          if git diff -U0 "$BEFORE" "$AFTER" | grep -nE 'ghp_[A-Za-z0-9]{20,}|gho_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}'; then
+            echo "::error::ключ в диффе — аксиома 4 АГЕНТС: не коммить, доложи владельцу, отзови ключ"
+            exit 1
+          else
+            echo "дифф чист от ключей"
+          fi
