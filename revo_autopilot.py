@@ -10,7 +10,7 @@
 import hashlib, json, os, re, subprocess
 
 try:
-    CFG = json.loads(r'''{"name": "edinyy-svod", "num": 3, "school": "КУПОЛ БРУНЕЛЛЕСКИ", "desc": "ЕДИНЫЙ СВОД — Конституция Хозяина 4.2: основной закон стенда «ЕДИНЫЙ ХОЗЯИН», 98 статей, XIX глав, стенд singulyar_host v3.2. РЕВО В ОСНОВЕ ВСЕГО · REVE=РЕВО", "topics": ["book", "constitution", "doctrine", "polymat", "revo", "svod"], "releases": 1, "palette": {"bg": "#2A1D12", "bg2": "#3A2A1B", "ink": "#F1E8D8", "gold": "#D4AF37", "gold2": "#E8C868", "dim": "#B79F7E", "accent": "#1F5B8B"}}''')
+    CFG = json.loads(r'''{"name": "edinyy-svod", "num": 18, "school": "НОВОСТРОЙ РОЯ", "desc": "ЕДИНЫЙ СВОД — Конституция Хозяина 4.2: основной закон стенда «ЕДИНЫЙ ХОЗЯИН», 98 статей, XIX глав, стенд singulyar_host v3.2. РЕВО В ОСНОВЕ ВСЕГО · REVE=РЕВО", "topics": ["book", "constitution", "doctrine", "pid1"], "releases": 0, "palette": {"bg": "#10243E", "bg2": "#1B3B5F", "ink": "#F3ECD9", "gold": "#D4AF37", "gold2": "#E8C868", "dim": "#8FA3BF", "accent": "#D5281B"}}''')
 except Exception:
     CFG = {"name": "REVO", "num": 0, "school": "", "desc": "", "topics": [], "releases": 0,
            "palette": dict(bg="#EFE6CF", bg2="#F6EFDC", ink="#241C10", gold="#9A7B23",
