@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-SINGULYAR HOST v3.2 — run_all.py
-Прогон всех экспериментов H-007..H-060 с таблицей вердиктов.
+SINGULYAR HOST v3.3 — run_all.py
+Прогон всех экспериментов Х-007..Х-066 с таблицей вердиктов.
+Х-061..Х-066 — фронт X (автоматность): автомат дома как конечный автомат
+(8 состояний-статусов, полная таблица переходов, именованные запреты).
 Запуск:  python -m singulyar_host.run_all
 """
 from __future__ import annotations
@@ -42,18 +44,21 @@ from .experiments import (  # noqa: F401
     h046_h050_minimality,
     h051_h055_history,
     h056_h060_reserve,
+    h061_h066_automaton,
 )
 
 
 def main(export_path: str = "") -> int:
     print("=" * 100)
-    print("SINGULYAR HOST v3.2 — рабочий прототип Хозяина. Срез: 15 ноября 2026.")
+    print("SINGULYAR HOST v3.3 — рабочий прототип Хозяина. Срез: 19 ноября 2026.")
+    print("Фронт X (автоматность): 8 состояний-статусов, 12 событий, "
+          "96/96 клеток таблицы переходов")
     print("Ядро: SUBJECT + TRANSITION + GOVERNANCE SURFACE(7) + SPACE-as-function")
     print("HOST = AUTHORSHIP OF GOVERNED TRANSITIONS")
     print("=" * 100)
 
     results = base.run_all()
-    widths = (10, 46, 7)
+    widths = (10, 62, 7)
     print(f"{'ID':<{widths[0]}} {'Эксперимент':<{widths[1]}} {'Вердикт':<{widths[2]}}")
     print("-" * 100)
     all_pass = True
