@@ -4,10 +4,6 @@
 
 </div>
 
-<div align="center">
-  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/edinyy-svod@main/banner.png" width="100%" alt="Штандарт edinyy-svod" />
-</div>
-
 <!--ФОРЖ:МУЗА:НАЧАЛО-->
 <div align="center">
   <img src="https://cdn.jsdelivr.net/gh/rtynbirf/edinyy-svod@main/repo-muse.svg" width="100%" alt="Муза edinyy-svod: мастерская КУПОЛ БРУНЕЛЛЕСКИ, кузня ПОЛИМАТ, раунд 12 · REVE=РЕВО" />
@@ -18,13 +14,31 @@
 
 <!--ФОРЖ:ПАСПОРТ:НАЧАЛО-->
 <div align="center">
-  <img src="revo-page.svg" width="100%" alt="РЕВО-паспорт страницы edinyy-svod в каноне ORNAMENTAL MYTHO-REALISM: орнаментальная решётка, медальон-миф, строение файлов, лексикон — по фактическому контенту" />
+  <img src="revo-page.svg" width="100%" alt="РЕВО-паспорт страницы edinyy-svod №3 в каноне ORNAMENTAL MYTHO-REALISM: орнаментальная решётка, медальон-миф, строение файлов, лексикон — по фактическому контенту" />
 </div>
 
 | ФАЙЛОВ | ПАПОК | КОММИТОВ | ОБНОВЛЕНО | РЕЛИЗОВ |
 |---:|---:|---:|---|---:|
-| 129 | 11 | 176 | 2026-11-28 | 1 |
+| 129 | 11 | 1 | 2026-11-28 | 1 |
 <!--ФОРЖ:ПАСПОРТ:КОНЕЦ-->
+
+# edinyy-svod
+
+<p align="center"><img src="https://cdn.jsdelivr.net/gh/rtynbirf/edinyy-svod@main/.github/social-preview.png" alt="edinyy-svod" width="100%"></p>
+
+<div align="center">
+
+<a href="https://github.com/rtynbirf/edinyy-svod"><img src="banner.png" width="100%" alt="edinyy-svod — штандарт мастерской в каноне ORNAMENTAL MYTHO-REALISM"></a>
+
+</div>
+
+<div align="center">
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/edinyy-svod@main/banner.png" width="100%" alt="Штандарт edinyy-svod" />
+</div>
+
+
+
+
 
 
 
