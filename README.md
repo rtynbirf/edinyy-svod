@@ -24,6 +24,18 @@
 
 # edinyy-svod
 
+<div align="center">
+
+<a href="https://github.com/rtynbirf/edinyy-svod"><img src="banner.png" width="100%" alt="edinyy-svod — штандарт мастерской в каноне ORNAMENTAL MYTHO-REALISM"></a>
+
+</div>
+
+
+
+
+
+# edinyy-svod
+
 <p align="center"><img src="https://cdn.jsdelivr.net/gh/rtynbirf/edinyy-svod@main/.github/social-preview.png" alt="edinyy-svod" width="100%"></p>
 
 <div align="center">
